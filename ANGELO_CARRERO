@@ -1,0 +1,90 @@
+/* EJERCCIOS DE LA CLASE 10 Y 11
+Desafio 2 / SQL
+ * @Autor: Angelo Carrero 
+ * @mail: acmleonardy@gmail.com
+ * @twitter: @anjerokata
+ * @version: 1 
+ * @Descripcion:manipulacion de datos en SQL de las clases 10 y 11 en CODERHOUSE
+ */
+USE ajomuch92_coderhouse_csharp_40930
+GO
+
+
+
+SELECT * FROM Usuario
+GO
+
+SELECT * FROM Usuario	
+WHERE Nombre ='tcasazza'
+GO
+
+
+
+SELECT * FROM Usuario
+WHERE NombreUsuario = 'tcasazza' AND Contraseña = 'CoderPassword'
+GO
+
+
+SELECT * FROM Producto
+WHERE Id = 1
+GO
+
+/* ME MUESTA EN LA CONSULTA (REMERA MANANGA LARGA - COSTO  500 - PRECIO VENTA 1400 - STOCK 23 - ID 1)*/
+
+INSERT INTO Usuario (Nombre,Apellido,NombreUsuario,Contraseña,Mail)
+VALUES ('ANGELO', 'CARRERO', 'ANJEROCODER', '1234CODER', 'angelo@coder.com')
+GO
+
+SELECT * FROM Usuario
+GO
+
+
+INSERT INTO Producto (Descripciones,Costo,PrecioVenta,Stock,IdUsuario)
+VALUES('CAMISAS',20,35,30,1)
+GO
+
+
+SELECT * FROM Producto
+GO
+
+SELECT p.Descripciones AS 'Productos' , pv.Stock AS 'Ventas'  
+FROM Producto AS P
+INNER JOIN ProductoVendido AS pv
+ON p.id = pv.IdProducto
+GO
+/* Obtener ventas mayores a 10000 de los productos que terminen con “ina”
+*/
+
+INSERT INTO Producto(Descripciones,Costo,PrecioVenta,Stock,IdUsuario)
+VALUES ('Harina',12000,15000,125,1)
+GO
+
+
+SELECT * FROM Producto
+GO
+
+INSERT INTO Venta (Comentarios, IdUsuario)
+VALUES('SE VENDIO PRODUCTO HARINA', 1)
+GO
+SELECT * FROM Producto
+GO
+
+INSERT INTO  ProductoVendido(Stock,IdProducto,IdVenta)
+VALUES(25,15,9)
+GO
+
+/*BUSQUEDA */
+SELECT P.Descripciones , p.Costo AS CostoTotal, PV.Stock AS CantidadVendida
+FROM Producto AS P
+INNER JOIN ProductoVendido AS PV
+ON p.Id = pv.IdProducto
+WHERE p.Costo >= 10000 and p.Descripciones like '%ina'
+GO
+
+/* Insertar la venta de 20 productos “Aceite de Girasol Cocinera” con precio de venta de 500 y de compra de 350 cada uno*/
+INSERT INTO Producto (Descripciones,Costo,PrecioVenta,Stock,IdUsuario) 
+VALUES ('Aceite de Girasol Cocinera',350,500,50,1)
+GO
+
+SELECT * FROM Producto 
+GO
